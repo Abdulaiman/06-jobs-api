@@ -10,6 +10,7 @@ interface BlogPostPreviewProps {
     author: string;
     date: string;
     summary: string;
+    content: string;
   }[];
 }
 const Blogs: React.FC = (): JSX.Element => {

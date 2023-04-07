@@ -6,8 +6,6 @@ import { useState } from "react";
 import AddBlogModal from "../blog-modal/add-blog-modal";
 
 const Nav = () => {
- 
-
   const [showModal, setShowModal] = useState(false);
 
   function handleAddBlog() {
@@ -17,14 +15,13 @@ const Nav = () => {
   function handleCloseModal() {
     setShowModal(false);
   }
+  const user = JSON.parse(`${localStorage.getItem("user")}`);
 
   return (
     <>
       <nav className="navbar">
         <div className="logo navbar-logo">
-          <Link to={"/"}>
-            <img src="/logo.png" alt="Logo" />
-          </Link>
+          <Link to={"/"}>Welcome {user?.name}</Link>
         </div>
         <div className="search-container">
           {window.location.href === "http://localhost:3000/my-blogs" ? (

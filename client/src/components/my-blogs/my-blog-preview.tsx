@@ -10,6 +10,7 @@ interface BlogPostPreviewProps {
     author: string;
     date: string;
     summary: string;
+    content: string;
   }[];
 }
 
@@ -25,13 +26,15 @@ const MyBLogs: React.FC = (): JSX.Element => {
     };
     getData();
   }, [token]);
-  console.log(data);
+
+  const user = JSON.parse(`${localStorage.getItem("user")}`);
 
   return (
     <div className="blog-post-list-container">
-      {data?.map((post) => (
-        <BlogPreview key={post._id} post={post} />
-      ))}
+      {data?.map((post) => {
+        post.author = user.name;
+        return <BlogPreview key={post._id} post={post} />;
+      })}
     </div>
   );
 };

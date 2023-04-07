@@ -5,8 +5,8 @@ import DOMAIN from "../../utils/backend-Domain";
 import axios from "axios";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("email@email.com");
+  const [password, setPassword] = useState("test-1234");
   const navigate = useNavigate();
   const handleLogin = async (e: any) => {
     e.preventDefault();
@@ -14,6 +14,7 @@ const Login = () => {
     const user = await axios.post(`${DOMAIN}/users/login`, { email, password });
 
     localStorage.setItem("token", user.data.token);
+    localStorage.setItem("user", JSON.stringify(user.data.user));
 
     const token = localStorage.getItem("token");
     if (token) {
